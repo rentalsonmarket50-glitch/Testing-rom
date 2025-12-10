@@ -84,42 +84,34 @@ const AppPlaceCard = ({ data }) => {
 
         {/* Content */}
         <div className="space-y-1">
-          {/* Location and Title */}
-          <div className="flex items-start justify-between">
-            <div className="flex-1 min-w-0">
-              <h3 className="text-base font-semibold text-gray-900 truncate">
-                {data.title}
-              </h3>
-              <p className="text-sm text-gray-500 truncate">{data.location}</p>
-            </div>
-          </div>
+          {/* Title */}
+          <h3 className="text-base font-semibold text-gray-900 truncate">
+            {data.title}
+          </h3>
 
           {/* Description */}
           {data.description && (
-            <p className="text-sm text-gray-500 line-clamp-1">{data.description}</p>
+            <p className="text-sm text-gray-500 line-clamp-2">{data.description}</p>
           )}
 
-          {/* Room Details */}
-          {data.roomDetails && (
-            <p className="text-sm text-gray-500">{data.roomDetails}</p>
-          )}
-
-          {/* Dates */}
-          <p className="text-sm text-gray-500">
-            {checkInDate} - {checkOutDate}
-          </p>
+          {/* Location */}
+          <p className="text-sm text-gray-500 truncate">{data.location}</p>
 
           {/* Rating and Price */}
           <div className="flex items-center justify-between pt-2">
-            <div className="flex items-center gap-1">
-              <StarIcon className="h-4 w-4 text-black" />
-              <span className="text-sm font-semibold">{data.star}</span>
-              <span className="text-sm text-gray-500">({data.reviews})</span>
-            </div>
+            {data.star && (
+              <div className="flex items-center gap-1">
+                <StarIcon className="h-4 w-4 text-black" />
+                <span className="text-sm font-semibold">{data.star}</span>
+                {data.reviews && (
+                  <span className="text-sm text-gray-500">({data.reviews})</span>
+                )}
+              </div>
+            )}
             <div className="text-right">
               <div className="flex items-baseline gap-1">
                 <span className="text-base font-semibold">{formattedPrice}</span>
-                <span className="text-sm text-gray-500">for {nights} nights</span>
+                <span className="text-sm text-gray-500">/month</span>
               </div>
             </div>
           </div>

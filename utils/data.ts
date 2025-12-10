@@ -52,6 +52,72 @@ export const getLiveAnywhere = async () => {
   return liveAnywhereResponse.json();
 };
 
+// Pre-launch properties
+export const getPreLaunchProperties = async () => {
+  return [
+    {
+      id: 'pre-1',
+      img: '/assets/search/1379331e-593a-4c1e-af51-222808c85a11.webp',
+      title: 'Luxury Apartment in Sector 17',
+      description: 'Modern 2BHK apartment with premium amenities and city view',
+      location: 'Chandigarh',
+      price: '₹25,000',
+      star: 4.9,
+      reviews: 45,
+    },
+    {
+      id: 'pre-2',
+      img: '/assets/search/013c9377-349f-418b-8d4c-15f923234a5f.webp',
+      title: 'Spacious Villa with Garden',
+      description: '3BHK independent villa with private garden and parking',
+      location: 'Mohali',
+      price: '₹45,000',
+      star: 4.8,
+      reviews: 32,
+    },
+    {
+      id: 'pre-3',
+      img: '/assets/search/2dd686bc-0195-40db-a37f-8b02476415b7.webp',
+      title: 'Studio Apartment Near IT Park',
+      description: 'Fully furnished studio with modern amenities and great connectivity',
+      location: 'Panchkula',
+      price: '₹18,000',
+      star: 4.7,
+      reviews: 28,
+    },
+    {
+      id: 'pre-4',
+      img: '/assets/search/44cb0de7-fa62-49e2-b4b8-68aed14373cb.webp',
+      title: 'Premium Flat in Gated Community',
+      description: '2BHK flat with clubhouse, gym, and swimming pool access',
+      location: 'Zirakpur',
+      price: '₹30,000',
+      star: 4.95,
+      reviews: 67,
+    },
+    {
+      id: 'pre-5',
+      img: '/assets/search/97bc37a6-9a1b-4bb2-8564-771319b246fb.webp',
+      title: 'Cozy 1BHK Near Airport',
+      description: 'Compact and comfortable 1BHK with all essential amenities',
+      location: 'Chandigarh',
+      price: '₹15,000',
+      star: 4.6,
+      reviews: 19,
+    },
+    {
+      id: 'pre-6',
+      img: '/assets/search/dde44668-1df5-41b6-8f91-5051975c4865.webp',
+      title: 'Luxury Penthouse with Terrace',
+      description: '3BHK penthouse with private terrace and panoramic city views',
+      location: 'Gurugram',
+      price: '₹75,000',
+      star: 5.0,
+      reviews: 12,
+    },
+  ];
+};
+
 // Location-wise property listings
 export const getLocationListings = async () => {
   // Mock data for location-based sections

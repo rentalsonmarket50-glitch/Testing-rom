@@ -12,18 +12,30 @@ import AppNearby from '@/components/atoms/AppNearby';
 import AppHowItWorks from '@/components/atoms/AppHowItWorks';
 import AppGuestReviews from '@/components/atoms/AppGuestReviews';
 import AppLocationSection from '@/components/atoms/AppLocationSection';
+import AppPreLaunch from '@/components/atoms/AppPreLaunch';
 // typings
 import { IExploreNearby, ILiveAnywhere } from 'typings';
 // utils
-import { getExploreNearby, getLiveAnywhere, getLocationListings } from 'utils/data';
+import {
+  getExploreNearby,
+  getLiveAnywhere,
+  getLocationListings,
+  getPreLaunchProperties,
+} from 'utils/data';
 
 interface IHomeDataProps {
   exploreNearby: IExploreNearby[];
   liveAnywhere: ILiveAnywhere[];
   locationListings: any;
+  preLaunchProperties: any[];
 }
 
-const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere, locationListings }) => {
+const Home: FC<IHomeDataProps> = ({
+  exploreNearby,
+  liveAnywhere,
+  locationListings,
+  preLaunchProperties,
+}) => {
   return (
     <>
       <AppHead />
@@ -40,34 +52,10 @@ const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere, locationListing
             <AppNearby key={index} data={data} />
           ))}
         </AppSection>
-        {/* live anywhere section */}
-        <AppSection
-          title="Live Anywhere"
-          className="grid grid-cols-2 lg:gap-x-4 gap-x-1 gap-y-2 lg:grid-cols-4"
-        >
-          {liveAnywhere.map((data, index) => (
-            <Link key={index} href="#">
-              <div className="p-2 duration-300 lg:p-3 gap-y-4 active:scale-105 active:bg-gray-200 active:bg-opacity-40 rounded-xl">
-                <div className="relative w-full h-40 mb-2 md:h-60 lg:h-72">
-                  <Image
-                    src={data.img}
-                    alt={data.title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    placeholder="blur"
-                    blurDataURL={data.img}
-                    className="rounded-xl"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-medium leading-5 text-gray-500 text-md md:text-xl">
-                    {data.title}
-                  </h3>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </AppSection>
+        {/* Pre-launch section */}
+        {preLaunchProperties && preLaunchProperties.length > 0 && (
+          <AppPreLaunch properties={preLaunchProperties} />
+        )}
         {/* Location-based sections */}
         {locationListings?.chandigarh && (
           <AppLocationSection
@@ -98,9 +86,15 @@ export const getStaticProps = async () => {
   const exploreNearby = await getExploreNearby();
   const liveAnywhere = await getLiveAnywhere();
   const locationListings = await getLocationListings();
+  const preLaunchProperties = await getPreLaunchProperties();
 
   return {
-    props: { exploreNearby, liveAnywhere, locationListings },
+    props: {
+      exploreNearby,
+      liveAnywhere,
+      locationListings,
+      preLaunchProperties,
+    },
   };
 };
 
