@@ -50,7 +50,11 @@ const AppHeader: FC<AppHeaderProps> = ({ exploreNearby, searchPage, query }) => 
 
   const headerBehavior = () => {
     let style = [];
-    if (!isSnapTop) style.push('bg-white shadow-lg');
+    if (!isSnapTop) {
+      style.push('bg-white shadow-lg');
+    } else {
+      style.push('bg-transparent');
+    }
     if (!isActiveSearch) style.push('h-[86px] pb-5');
     if (isActiveSearch) style.push('pb-8');
     return style.join(' ');

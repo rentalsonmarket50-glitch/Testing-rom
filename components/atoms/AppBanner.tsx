@@ -9,14 +9,14 @@ const AppBanner = () => {
           <div className="h-[400px] lg:h-[400px] object-cover rounded-3xl">
             <div className="absolute inset-0 z-10 md:hidden" />
             <Image
-              src="/assets/banner.jpg"
+              src="/insurance-mortgage-real-estate-concept-surprised-young-man-pointing-house-card-model-person.webp"
               alt="banner"
               fill
               style={{ objectFit: 'cover' }}
               className="rounded-xl"
               placeholder="blur"
               quality={50}
-              blurDataURL="/assets/banner.jpg"
+              blurDataURL="/insurance-mortgage-real-estate-concept-surprised-young-man-pointing-house-card-model-person.webp"
             />
           </div>
 
