@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const AppHero = () => {
   return (
-    <section className="relative h-[65vh] md:h-[85vh]">
+    <section className="relative h-[65vh] md:h-[85vh] -mt-[86px]">
       <div className="absolute z-10 w-full bg-gradient-to-b from-transparent-black to-transparent h-28" />
       <Image
         src="/assets/hero.jpg"
@@ -12,6 +12,7 @@ const AppHero = () => {
         placeholder="blur"
         blurDataURL="/assets/hero.jpg"
         quality={50}
+        className="z-0"
       />
 
       <div className="container">

@@ -53,7 +53,7 @@ const AppHeader: FC<AppHeaderProps> = ({ exploreNearby, searchPage, query }) => 
     if (!isSnapTop) {
       style.push('bg-white shadow-lg');
     } else {
-      style.push('bg-transparent');
+      style.push('bg-transparent backdrop-blur-0');
     }
     if (!isActiveSearch) style.push('h-[86px] pb-5');
     if (isActiveSearch) style.push('pb-8');
