@@ -9,6 +9,8 @@ import AppSection from '@/components/atoms/AppSection';
 import AppBanner from '@/components/atoms/AppBanner';
 import AppFooter from '@/components/atoms/AppFooter';
 import AppNearby from '@/components/atoms/AppNearby';
+import AppHowItWorks from '@/components/atoms/AppHowItWorks';
+import AppGuestReviews from '@/components/atoms/AppGuestReviews';
 // typings
 import { IExploreNearby, ILiveAnywhere } from 'typings';
 // utils
@@ -24,7 +26,7 @@ const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere }) => {
     <>
       <AppHead />
       <AppHeader exploreNearby={exploreNearby} />
-      <main className="relative">
+      <main>
         {/* hero */}
         <AppHero />
         {/* explore nearby section */}
@@ -64,6 +66,10 @@ const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere }) => {
             </Link>
           ))}
         </AppSection>
+        {/* How it works section */}
+        <AppHowItWorks />
+        {/* Guest reviews section */}
+        <AppGuestReviews />
         {/* bottom banner */}
         <AppBanner />
       </main>

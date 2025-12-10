@@ -30,14 +30,14 @@ const AppLogo: FC<IAppLogoProps> = ({ className, type }) => {
       );
     case EAppLogo.TEXT:
       return (
-        <div className={`flex flex-col ${className}`}>
+        <div className={`flex flex-col items-center ${className}`}>
           <span
             className="text-2xl md:text-3xl font-bold leading-tight"
             style={{ color: '#0066FF' }}
           >
             ROM
           </span>
-          <span className="text-xs md:text-sm font-normal leading-tight text-gray-600">
+          <span className="text-xs md:text-sm font-normal leading-tight text-gray-600 text-center">
             Rentals On Market
           </span>
         </div>

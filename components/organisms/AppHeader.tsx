@@ -53,7 +53,7 @@ const AppHeader: FC<AppHeaderProps> = ({ exploreNearby, searchPage, query }) => 
     if (!isSnapTop) {
       style.push('bg-white shadow-lg');
     } else {
-      style.push('bg-transparent backdrop-blur-0');
+      style.push('bg-transparent');
     }
     if (!isActiveSearch) style.push('h-[86px] pb-5');
     if (isActiveSearch) style.push('pb-8');
@@ -81,7 +81,7 @@ const AppHeader: FC<AppHeaderProps> = ({ exploreNearby, searchPage, query }) => 
           } hidden md:grid md:grid-cols-[auto,1fr,auto] xl:grid-cols-[1.5fr,3fr,1.5fr] 2xl:grid-cols-[1fr,3fr,1fr] items-start`}
         >
           {/* left side - logo */}
-          <div className="flex items-center h-12">
+          <div className="flex items-center justify-center h-12">
             <Link href="/">
               <AppLogo
                 className={`${isSnapTop ? 'text-white' : 'text-primary'} hidden xl:block`}
