@@ -11,17 +11,19 @@ import AppFooter from '@/components/atoms/AppFooter';
 import AppNearby from '@/components/atoms/AppNearby';
 import AppHowItWorks from '@/components/atoms/AppHowItWorks';
 import AppGuestReviews from '@/components/atoms/AppGuestReviews';
+import AppLocationSection from '@/components/atoms/AppLocationSection';
 // typings
 import { IExploreNearby, ILiveAnywhere } from 'typings';
 // utils
-import { getExploreNearby, getLiveAnywhere } from 'utils/data';
+import { getExploreNearby, getLiveAnywhere, getLocationListings } from 'utils/data';
 
 interface IHomeDataProps {
   exploreNearby: IExploreNearby[];
   liveAnywhere: ILiveAnywhere[];
+  locationListings: any;
 }
 
-const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere }) => {
+const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere, locationListings }) => {
   return (
     <>
       <AppHead />
@@ -66,6 +68,19 @@ const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere }) => {
             </Link>
           ))}
         </AppSection>
+        {/* Location-based sections */}
+        {locationListings?.chandigarh && (
+          <AppLocationSection
+            title="Available in Chandigarh this weekend"
+            listings={locationListings.chandigarh}
+          />
+        )}
+        {locationListings?.gurgaon && (
+          <AppLocationSection
+            title="Stay in Gurgaon District"
+            listings={locationListings.gurgaon}
+          />
+        )}
         {/* How it works section */}
         <AppHowItWorks />
         {/* Guest reviews section */}
@@ -82,9 +97,10 @@ const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere }) => {
 export const getStaticProps = async () => {
   const exploreNearby = await getExploreNearby();
   const liveAnywhere = await getLiveAnywhere();
+  const locationListings = await getLocationListings();
 
   return {
-    props: { exploreNearby, liveAnywhere },
+    props: { exploreNearby, liveAnywhere, locationListings },
   };
 };
 

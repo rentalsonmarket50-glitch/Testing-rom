@@ -9,8 +9,8 @@ const AppPlaceCard = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Calculate total price for stay (assuming 5 nights for now)
-  const nights = 5;
+  // Calculate total price for stay (2 nights for location sections)
+  const nights = 2;
   const priceMatch = data.price.match(/₹?([\d,]+)/);
   const pricePerNight = priceMatch ? parseInt(priceMatch[1].replace(/,/g, '')) : 0;
   const totalPrice = pricePerNight * nights;
