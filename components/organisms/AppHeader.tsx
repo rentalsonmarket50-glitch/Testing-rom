@@ -27,7 +27,9 @@ const AppHeader: FC<AppHeaderProps> = ({ exploreNearby, searchPage, query }) => 
   // On home page (searchPage === false): expanded at top, collapsed on scroll
   // On search page (searchPage === true): collapsed by default, expand on click
   // On listing page (searchPage === undefined): collapsed by default, expand on click
-  const [isSnapTop, setIsSnapTop] = useState<boolean>(searchPage === false ? true : false);
+  const [isSnapTop, setIsSnapTop] = useState<boolean>(
+    searchPage === false ? true : false
+  );
   const [isActiveSearch, setIsActiveSearch] = useState<boolean>(
     searchPage === false ? true : false
   );

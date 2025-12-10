@@ -40,7 +40,8 @@ const AppSearchBar: FC<IAppSearchBarProps> = ({
   const router = useRouter();
   const [searchMenu, setSearchMenu] = useState<ESearchMenu | null>(null);
   // data
-  const [{ location, checkIn, checkOut, guests, propertyType, furnishing }, dispatch] = useDataContext();
+  const [{ location, checkIn, checkOut, guests, propertyType, furnishing }, dispatch] =
+    useDataContext();
   // handler
   const handleOnBlur = (event?: FocusEvent<HTMLElement>) => {
     const { relatedTarget } = event || {};
@@ -159,7 +160,10 @@ const AppSearchBar: FC<IAppSearchBarProps> = ({
                           key={type}
                           type="button"
                           onClick={() => {
-                            dispatch({ type: DATA_ACTION_TYPES.SET_PROPERTY_TYPE, payload: type });
+                            dispatch({
+                              type: DATA_ACTION_TYPES.SET_PROPERTY_TYPE,
+                              payload: type,
+                            });
                             handleOnBlur();
                           }}
                           className={`w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors ${
@@ -191,21 +195,26 @@ const AppSearchBar: FC<IAppSearchBarProps> = ({
                 >
                   <AppSearchOptionWrapper className="right-0 w-64">
                     <div className="py-2">
-                      {['Any', 'Furnished', 'Semi Furnished', 'Unfurnished'].map((option) => (
-                        <button
-                          key={option}
-                          type="button"
-                          onClick={() => {
-                            dispatch({ type: DATA_ACTION_TYPES.SET_FURNISHING, payload: option });
-                            handleOnBlur();
-                          }}
-                          className={`w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors ${
-                            furnishing === option ? 'bg-gray-100 font-semibold' : ''
-                          }`}
-                        >
-                          {option}
-                        </button>
-                      ))}
+                      {['Any', 'Furnished', 'Semi Furnished', 'Unfurnished'].map(
+                        (option) => (
+                          <button
+                            key={option}
+                            type="button"
+                            onClick={() => {
+                              dispatch({
+                                type: DATA_ACTION_TYPES.SET_FURNISHING,
+                                payload: option,
+                              });
+                              handleOnBlur();
+                            }}
+                            className={`w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors ${
+                              furnishing === option ? 'bg-gray-100 font-semibold' : ''
+                            }`}
+                          >
+                            {option}
+                          </button>
+                        )
+                      )}
                     </div>
                   </AppSearchOptionWrapper>
                 </AppSearchOptionButton>

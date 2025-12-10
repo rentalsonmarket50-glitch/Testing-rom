@@ -206,9 +206,7 @@ const ListingDetail = () => {
           <div className="space-y-8">
             {/* Title and Location */}
             <div>
-              <h1 className="text-2xl md:text-3xl font-semibold mb-2">
-                {listing.title}
-              </h1>
+              <h1 className="text-2xl md:text-3xl font-semibold mb-2">{listing.title}</h1>
               <p className="text-base text-gray-600">{listing.location}</p>
             </div>
 
@@ -217,9 +215,7 @@ const ListingDetail = () => {
               <div className="flex items-center gap-2 p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200">
                 <div className="text-2xl">🏆</div>
                 <div>
-                  <div className="font-semibold text-gray-900">
-                    Guest favourite
-                  </div>
+                  <div className="font-semibold text-gray-900">Guest favourite</div>
                   <div className="text-sm text-gray-600">
                     One of the most loved homes on Airbnb, according to guests
                   </div>
@@ -282,7 +278,7 @@ const ListingDetail = () => {
 
             {/* Where you'll sleep */}
             <div className="border-b pb-6">
-              <h2 className="text-xl font-semibold mb-4">Where you'll sleep</h2>
+              <h2 className="text-xl font-semibold mb-4">Where you&apos;ll sleep</h2>
               <div className="border rounded-xl p-4 max-w-xs">
                 <div className="relative w-full h-32 mb-3 rounded-lg overflow-hidden">
                   <Image
@@ -414,12 +410,12 @@ const ListingDetail = () => {
 
             {/* Map */}
             <div className="border-b pb-6">
-              <h2 className="text-xl font-semibold mb-4">Where you'll be</h2>
+              <h2 className="text-xl font-semibold mb-4">Where you&apos;ll be</h2>
               <div className="h-96 rounded-xl overflow-hidden">
                 <AppMap
                   center={{
-                    latitude: listing.coordinates?.lat || listing.coordinates?.latitude,
-                    longitude: listing.coordinates?.long || listing.coordinates?.longitude,
+                    lat: listing.coordinates?.lat,
+                    long: listing.coordinates?.long,
                   }}
                 />
               </div>
@@ -460,7 +456,9 @@ const ListingDetail = () => {
                   <div className="flex items-center gap-1 mb-2">
                     <StarIcon className="h-4 w-4 text-black" />
                     <span className="font-semibold">{listing.host.rating}</span>
-                    <span className="text-gray-600">({listing.host.hostReviews} reviews)</span>
+                    <span className="text-gray-600">
+                      ({listing.host.hostReviews} reviews)
+                    </span>
                   </div>
                   <div className="text-sm text-gray-600 mb-4">
                     Response time: {listing.host.responseTime}
@@ -515,7 +513,8 @@ const ListingDetail = () => {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <div className="text-2xl font-semibold">
-                    ₹{finalTotal.toLocaleString('en-IN')} <span className="text-base font-normal">total</span>
+                    ₹{finalTotal.toLocaleString('en-IN')}{' '}
+                    <span className="text-base font-normal">total</span>
                   </div>
                   <div className="flex items-center gap-1 mt-1">
                     <StarIcon className="h-4 w-4 text-black" />
@@ -556,7 +555,7 @@ const ListingDetail = () => {
                 Reserve
               </button>
               <p className="text-center text-sm text-gray-600 mb-4">
-                You won't be charged yet
+                You won&apos;t be charged yet
               </p>
 
               <div className="space-y-3 text-sm border-t pt-4">
@@ -580,7 +579,10 @@ const ListingDetail = () => {
                 </div>
               </div>
 
-              <Link href="/" className="block text-center text-sm text-gray-600 mt-4 underline">
+              <Link
+                href="/"
+                className="block text-center text-sm text-gray-600 mt-4 underline"
+              >
                 Report this listing
               </Link>
             </div>
@@ -594,4 +596,3 @@ const ListingDetail = () => {
 };
 
 export default ListingDetail;
-

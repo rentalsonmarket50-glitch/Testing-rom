@@ -69,9 +69,7 @@ const AppMap: FC<IAppMap> = ({ children, center }) => {
         <div className="text-center p-4">
           <p className="text-gray-600 font-medium mb-2">Map View</p>
           <p className="text-sm text-gray-500">
-            {!mapboxToken
-              ? 'Mapbox token not configured'
-              : 'Loading map...'}
+            {!mapboxToken ? 'Mapbox token not configured' : 'Loading map...'}
           </p>
           <p className="text-xs text-gray-400 mt-2">
             Location: {latitude.toFixed(4)}, {longitude.toFixed(4)}
@@ -85,7 +83,9 @@ const AppMap: FC<IAppMap> = ({ children, center }) => {
     <div className="w-full h-full relative">
       <Map
         {...viewState}
-        mapStyle={process.env.NEXT_PUBLIC_MAPBOX_STYLE || 'mapbox://styles/mapbox/streets-v12'}
+        mapStyle={
+          process.env.NEXT_PUBLIC_MAPBOX_STYLE || 'mapbox://styles/mapbox/streets-v12'
+        }
         mapboxAccessToken={mapboxToken}
         style={{ width: '100%', height: '100%' }}
         onMove={(evt) => {
