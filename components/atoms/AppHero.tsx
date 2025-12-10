@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const AppHero = () => {
   return (
-    <section className="relative h-[65vh] md:h-[85vh] -mt-[86px]">
+    <section className="relative h-[65vh] md:h-[85vh] mt-[86px]">
       <div className="absolute z-10 w-full bg-gradient-to-b from-transparent-black to-transparent h-28" />
       <Image
         src="/assets/hero.jpg"

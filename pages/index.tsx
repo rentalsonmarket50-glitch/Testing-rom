@@ -24,7 +24,7 @@ const Home: FC<IHomeDataProps> = ({ exploreNearby, liveAnywhere }) => {
     <>
       <AppHead />
       <AppHeader exploreNearby={exploreNearby} />
-      <main>
+      <main className="relative">
         {/* hero */}
         <AppHero />
         {/* explore nearby section */}
