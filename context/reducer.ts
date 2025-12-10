@@ -59,5 +59,11 @@ export const dataReducer = (state, action) => {
     case DATA_ACTION_TYPES.DECREASE_INFANTS:
       if (infants <= 0) return state;
       return { ...state, guests: { ...state.guests, infants: infants - 1 } };
+
+    case DATA_ACTION_TYPES.SET_PROPERTY_TYPE:
+      return { ...state, propertyType: payload };
+
+    case DATA_ACTION_TYPES.SET_FURNISHING:
+      return { ...state, furnishing: payload };
   }
 };

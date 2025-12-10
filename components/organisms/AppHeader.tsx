@@ -24,9 +24,12 @@ interface AppHeaderProps {
 }
 
 const AppHeader: FC<AppHeaderProps> = ({ exploreNearby, searchPage, query }) => {
-  const [isSnapTop, setIsSnapTop] = useState<boolean>(searchPage ? false : true);
+  // On home page (searchPage === false): expanded at top, collapsed on scroll
+  // On search page (searchPage === true): collapsed by default, expand on click
+  // On listing page (searchPage === undefined): collapsed by default, expand on click
+  const [isSnapTop, setIsSnapTop] = useState<boolean>(searchPage === false ? true : false);
   const [isActiveSearch, setIsActiveSearch] = useState<boolean>(
-    searchPage ? false : true
+    searchPage === false ? true : false
   );
   const [activeMenu, setActiveMenu] = useState<EHeaderOpions | null>(
     EHeaderOpions.PLACES_TO_STAY
@@ -52,8 +55,9 @@ const AppHeader: FC<AppHeaderProps> = ({ exploreNearby, searchPage, query }) => 
   };
 
   useEffect(() => {
-    // listen to scroll
-    if (!searchPage) {
+    // listen to scroll only on home page (searchPage === false)
+    // On search page and listing page, don't auto-expand/collapse on scroll
+    if (searchPage === false) {
       window.addEventListener('scroll', handleOnScroll);
     }
     return () => window.removeEventListener('scroll', handleOnScroll);

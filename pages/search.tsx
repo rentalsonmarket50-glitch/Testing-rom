@@ -62,7 +62,11 @@ const Search = ({ searchResults }) => {
       latitude: result.lat,
       longitude: result.long,
     }));
-    return getCenter(coords) || { latitude: 0, longitude: 0 };
+    const center = getCenter(coords);
+    // Default to Chandigarh if no center found
+    return center && center.latitude && center.longitude
+      ? center
+      : { latitude: 30.7333, longitude: 76.7794 };
   };
 
   return (
@@ -71,49 +75,45 @@ const Search = ({ searchResults }) => {
       <AppHeader searchPage query={{ location, checkIn, checkOut, guests }} />
       <main
         className={`${
-          !isFullMap && 'lg:grid-cols-[700px,1fr] xl:grid-cols-[840px,1fr]'
+          !isFullMap && 'lg:grid-cols-[1fr,400px] xl:grid-cols-[1fr,500px]'
         } flex-grow grid grid-cols-1 mt-[86px] duration-500`}
       >
         {/* left - cards */}
         <div
-          className={`${isFullMap && 'hidden'} px-4 py-8 duration-500 lg:py-12 lg:px-7`}
+          className={`${isFullMap && 'hidden'} px-4 py-8 duration-500 lg:py-12 lg:px-7 overflow-y-auto`}
         >
-          {/* search data */}
-          <span className="inline-block mb-2 text-sm text-gray-400">
-            217 Stays {checkIn && getDates(checkIn, checkOut)}{' '}
-            {guests && getGuests(guests)}
-          </span>
-          {/* title */}
-          <h1 className="mb-2 text-2xl font-semibold md:text-3xl lg:text-4xl lg:mb-7">
-            Stays in {location}
-          </h1>
-          {/* filters */}
-          <div className="mb-4 space-x-1 space-y-2 text-gray-400 md:space-x-2 lg:mb-8">
-            <button className="px-2 py-1 text-xs duration-300 border border-gray-300 border-opacity-50 rounded-full cursor-pointer md:px-4 md:py-2 lg:text-sm active:scale-90 hover:border-gray-500">
+          {/* Header with count and prices tag */}
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-xl font-semibold md:text-2xl lg:text-3xl">
+              Over 1,000 homes in {location || 'Chandigarh'}
+            </h1>
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 text-xs font-medium bg-pink-100 text-pink-700 rounded-full">
+                Prices include all fees
+              </span>
+            </div>
+          </div>
+          {/* Filters */}
+          <div className="mb-6 flex flex-wrap gap-2">
+            <button className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-full hover:border-gray-900 transition-colors">
               Cancellation flexibility
             </button>
-            <button className="px-2 py-1 text-xs duration-300 border border-gray-300 border-opacity-50 rounded-full cursor-pointer md:px-4 md:py-2 lg:text-sm active:scale-90 hover:border-gray-500">
+            <button className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-full hover:border-gray-900 transition-colors">
               Type of place
             </button>
-            <button className="px-2 py-1 text-xs duration-300 border border-gray-300 border-opacity-50 rounded-full cursor-pointer md:px-4 md:py-2 lg:text-sm active:scale-90 hover:border-gray-500">
+            <button className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-full hover:border-gray-900 transition-colors">
               Price
             </button>
-            <button className="px-2 py-1 text-xs duration-300 border border-gray-300 border-opacity-50 rounded-full cursor-pointer md:px-4 md:py-2 lg:text-sm active:scale-90 hover:border-gray-500">
+            <button className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-full hover:border-gray-900 transition-colors">
               Instant Book
             </button>
-            <button className="px-2 py-1 text-xs duration-300 border border-gray-300 border-opacity-50 rounded-full cursor-pointer md:px-4 md:py-2 lg:text-sm active:scale-90 hover:border-gray-500">
+            <button className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-full hover:border-gray-900 transition-colors">
               More filters
             </button>
           </div>
-          {/* information */}
-          <p className="mb-4 text-sm text-gray-400">
-            Review COVID-19 travel restrictions before you book.{' '}
-            <Link href="/" className="underline">
-              Learn more
-            </Link>
-          </p>
-          {/* list */}
-          <section>
+
+          {/* Listings Grid */}
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {searchResults.map((result) => (
               <AppPlaceCard key={result.long + result.lat} data={result} />
             ))}
@@ -123,7 +123,7 @@ const Search = ({ searchResults }) => {
         <section
           className={`${
             map ? 'block fixed left-0 right-0 bottom-0 top-0' : 'hidden'
-          } sm:block sm:sticky top-[86px] h-map flex-grow bg-yellow-900 bg-opacity-10 duration-100`}
+          } sm:block sm:sticky top-[86px] h-[calc(100vh-86px)] flex-grow bg-gray-100 duration-100`}
         >
           <AppMap center={getCenterMap()}>
             <button

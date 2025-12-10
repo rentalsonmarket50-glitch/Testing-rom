@@ -10,6 +10,8 @@ interface IInitialState {
     children: number;
     infants: number;
   };
+  propertyType: string;
+  furnishing: string;
 }
 
 export const initialState: IInitialState = {
@@ -17,6 +19,8 @@ export const initialState: IInitialState = {
   checkIn: null,
   checkOut: null,
   guests: { adults: 0, children: 0, infants: 0 },
+  propertyType: '',
+  furnishing: '',
 };
 
 export const DataContext = createContext(null);
